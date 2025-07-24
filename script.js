@@ -192,7 +192,7 @@ document.querySelectorAll('a.btn[href="#"]').forEach(btn => {
             const priceText = priceEl.textContent;
             const priceNumber = parseInt(priceText.replace(/\D/g, ''));
             if (priceNumber) {
-              priceEl.innerHTML = `R$ <span class="price-number">0</span><span class="price-period">/mês</span>`;
+              priceEl.innerHTML = ` <span class="price-period">a partir de:</span> R$ <span class="price-number">0</span>`;
               const numberSpan = priceEl.querySelector('.price-number');
               animateCounter(numberSpan, priceNumber);
             }

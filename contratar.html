@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contratar Grupo | Anadem</title>
+  <link rel="icon" type="image/png" href="./img/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #f7f9fa;
+    }
+
+    .contratar-container {
+      max-width: 500px;
+      margin: 60px auto 40px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      padding: 2.5rem 2rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contratar-container h2 {
+      color: #0d9488;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .contratar-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .contratar-form label {
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      color: #222;
+    }
+
+    .contratar-form input,
+    .contratar-form select {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #f9fafb;
+      transition: border 0.2s;
+    }
+
+    .contratar-form input:focus,
+    .contratar-form select:focus {
+      border: 1.5px solid #0d9488;
+      outline: none;
+    }
+
+    .contratar-form button {
+      background: #0d9488;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.9rem 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .contratar-form button:hover {
+      background: #0b7c6b;
+    }
+
+    @media (max-width: 600px) {
+      .contratar-container {
+        padding: 0.5rem 0.2rem;
+      }
+
+      .contratar-container h2 {
+        font-size: 1.3rem;
+      }
+
+      .contratar-form input,
+      .contratar-form select {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.7rem;
+      }
+
+      .contratar-form button {
+        font-size: 1rem;
+        padding: 0.7rem 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container" style="display:flex;align-items:center;justify-content:center;gap:1rem;">
+      <a href="index.html" class="btn btn-secondary" style="padding:0.5rem 1rem;font-size:1rem;">&larr; Voltar</a>
+      <a href="index.html" class="logo"><img src="./img/logo-anadem.png" alt="Logo Anadem" style="height:32px;"> <img src="./img/logo_seguremed.png" alt="Logo Seguremed" style="height:32px;"></a>
+    </div>
+  </header>
+  <main>
+    <div class="contratar-container">
+      <button onclick="window.history.back()" class="btn btn-secondary" style="width:100%;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;font-size:1rem;">
+        <span style="font-size:1.2em;">&#8592;</span> Voltar
+      </button>
+      <h2>Contratar Grupo</h2>
+      <form class="contratar-form" id="contratarForm">
+        <div>
+          <label for="grupo">Grupo Selecionado</label>
+          <input type="text" id="grupo" name="grupo" readonly required>
+        </div>
+        <div>
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+        </div>
+        <div>
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+        </div>
+        <div>
+          <label for="cpf">CPF</label>
+          <input type="text" id="cpf" name="cpf" placeholder="Seu CPF" maxlength="14" required>
+        </div>
+        <div>
+          <label for="especialidade">Especialidade</label>
+          <select id="especialidade" name="especialidade" required>
+            <option value="">Selecione sua especialidade</option>
+          </select>
+        </div>
+        <button type="submit">Enviar para WhatsApp</button>
+      </form>
+      <a href="index.html" class="btn btn-secondary" style="margin-top:1.5rem;display:inline-block;text-align:center;">Voltar à Página Inicial</a>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container" style="text-align:center;">
+      <p>&copy; 2025 - Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  <script>
+    // Preencher grupo selecionado a partir da query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const grupo = urlParams.get('grupo');
+
+    // Especialidades por grupo
+    const especialidadesPorGrupo = {
+      'Grupo 1': [
+        'Acupuntura', 'Alergia e Imunologia', 'Angiologia', 'Clínica Médica', 'Coloproctologia', 'Dermatologia Não Invasiva',
+        'Endocrinologia e Metabologia', 'Endoscopia', 'Gastroenterologia', 'Genética Médica', 'Geriatria', 'Homeopatia',
+        'Infectologia', 'Medicina da Família e Comunidade', 'Medicina do Trabalho', 'Medicina do Tráfego', 'Medicina Esportiva',
+        'Medicina Física e Reabilitação', 'Medicina Laboratorial', 'Medicina Legal e Perícia Médica', 'Medicina Nuclear',
+        'Medicina Preventiva e Social', 'Médicos', 'Nutrologia', 'Patologia', 'Patologia Clínica', 'Pediatria',
+        'Pediatria Intensiva', 'Pneumologia', 'Psiquiatria', 'Radiologia e Diagnóstico por Imagem'
+      ],
+      'Grupo 2': [
+        'Especialidade 2A', 'Especialidade 2B', 'Especialidade 2C'
+      ],
+      'Grupo 3': [
+        'Especialidade 3A', 'Especialidade 3B', 'Especialidade 3C'
+      ],
+      'Grupo 4': [
+        'Especialidade 4A', 'Especialidade 4B', 'Especialidade 4C'
+      ],
+      'Grupo D1': [
+        'Odonto 1A', 'Odonto 1B', 'Odonto 1C'
+      ],
+      'Grupo D2': [
+        'Odonto 2A', 'Odonto 2B', 'Odonto 2C'
+      ],
+      'Grupo D3': [
+        'Odonto 3A', 'Odonto 3B', 'Odonto 3C'
+      ],
+      'Grupo D4': [
+        'Odonto 4A', 'Odonto 4B', 'Odonto 4C'
+      ]
+    };
+    function preencherEspecialidades(grupo) {
+      const select = document.getElementById('especialidade');
+      select.innerHTML = '<option value="">Selecione sua especialidade</option>';
+      (especialidadesPorGrupo[grupo] || []).forEach(function (esp) {
+        const opt = document.createElement('option');
+        opt.value = esp;
+        opt.textContent = esp;
+        select.appendChild(opt);
+      });
+    }
+    if (grupo) {
+      document.getElementById('grupo').value = grupo;
+      preencherEspecialidades(grupo);
+    }
+    // Formulário para WhatsApp
+    document.getElementById('contratarForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const cpf = document.getElementById('cpf').value;
+      const especialidade = document.getElementById('especialidade').value;
+      const grupo = document.getElementById('grupo').value;
+      const msg = `Olá! Gostaria de contratar o ${grupo}.\nNome: ${nome}\nE-mail: ${email}\nCPF: ${cpf}\nEspecialidade: ${especialidade}`;
+      const phone = '5592999999999'; // Substitua pelo número desejado
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+
+</html>

@@ -363,11 +363,18 @@
 
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .pricing-card {
@@ -381,6 +388,14 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+    }
+
+    .group-info {
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
     }
 
     .pricing-card:hover {
@@ -441,7 +456,7 @@
     }
 
     .pricing-features {
-      list-style: none;
+      flex: 1 1 auto;
       margin-bottom: 2rem;
     }
 
@@ -457,6 +472,10 @@
     .pricing-features .check {
       color: #10b981;
       font-size: 1.2rem;
+    }
+
+    .pricing-card a.btn {
+      margin-top: auto;
     }
 
     /* News Section */
