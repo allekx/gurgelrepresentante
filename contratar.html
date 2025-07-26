@@ -137,6 +137,69 @@
             <option value="">Selecione sua especialidade</option>
           </select>
         </div>
+
+        <!-- Descrição do Grupo 1 (aparece apenas quando Grupo 1 está selecionado) -->
+        <div id="grupo1Description" style="display: none;">
+          <div class="group-description">
+            <div class="description-header">
+              <i class="fas fa-shield-alt"></i>
+              <span>Proteção Completa - Grupo 1</span>
+            </div>
+
+            <div class="description-section">
+              <h4><i class="fas fa-list-ul"></i> Opções de Capital Segurado</h4>
+              <div class="capital-options">
+                <div class="capital-option">
+                  <div class="capital-info">
+                    <div class="capital-amount">R$ 500.000,00</div>
+                    <div class="capital-label">Capital Segurado</div>
+                  </div>
+                  <div class="capital-price">R$ 460,00/mês</div>
+                </div>
+                <div class="capital-option">
+                  <div class="capital-info">
+                    <div class="capital-amount">R$ 800.000,00</div>
+                    <div class="capital-label">Capital Segurado</div>
+                  </div>
+                  <div class="capital-price">R$ 598,00/mês</div>
+                </div>
+                <div class="capital-option">
+                  <div class="capital-info">
+                    <div class="capital-amount">R$ 1.000.000,00</div>
+                    <div class="capital-label">Capital Segurado</div>
+                  </div>
+                  <div class="capital-price">R$ 690,00/mês</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="description-section">
+              <h4><i class="fas fa-info-circle"></i> Informações Importantes</h4>
+              <ul class="info-list">
+                <li><i class="fas fa-check"></i> Taxa de adesão de igual valor ao mensal</li>
+                <li><i class="fas fa-check"></i> Reajustes conforme regulamento</li>
+                <li><i class="fas fa-check"></i> Cobertura nacional ampliada</li>
+                <li><i class="fas fa-check"></i> Suporte jurídico completo</li>
+              </ul>
+            </div>
+
+            <div class="description-section">
+              <h4><i class="fas fa-gavel"></i> Objetivos do ANADEM</h4>
+              <ul class="objectives-list">
+                <li>Assistência jurídica, judicial e pericial a médicos e dentistas</li>
+                <li>Proteção em processos civis, éticos ou criminais</li>
+                <li>Escritórios de advocacia credenciados especializados</li>
+                <li>Proteção patrimonial através de seguradora contratada</li>
+              </ul>
+            </div>
+
+            <div class="description-footer">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>Proposta será submetida ao Conselho Jurídico e Científico do ANADEM para aprovação</span>
+            </div>
+          </div>
+        </div>
+
         <button type="submit">Enviar para WhatsApp</button>
       </form>
       <a href="index.html" class="btn btn-secondary" style="margin-top:1.5rem;display:inline-block;text-align:center; color: #0d9488;">Voltar à Página Inicial</a>
@@ -147,10 +210,20 @@
       <p>&copy; 2025 - Todos os direitos reservados.</p>
     </div>
   </footer>
+  <!-- Botão flutuante do WhatsApp -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/5592992534622" target="_blank" class="whatsapp-btn">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
   <script>
     // Preencher grupo selecionado a partir da query string
     const urlParams = new URLSearchParams(window.location.search);
     const grupo = urlParams.get('grupo');
+
+    // Limpar espaços extras do grupo
+    const grupoLimpo = grupo ? grupo.trim() : '';
 
     // Especialidades por grupo
     const especialidadesPorGrupo = {
@@ -163,40 +236,84 @@
         'Pediatria Intensiva', 'Pneumologia', 'Psiquiatria', 'Radiologia e Diagnóstico por Imagem'
       ],
       'Grupo 2': [
-        'Especialidade 2A', 'Especialidade 2B', 'Especialidade 2C'
+        'Dermatologia Invasiva', 'Endocrinologia Pediátrica', 'Gastroenterologia Pediátrica', 'Hematologia', 'Hematologia Pediátrica',
+        'Infectologia Pediátrica', 'Medicina de Emergência', 'Medicina Intensiva', 'Medicina Nuclear Pediátrica', 'Neonatologia',
+        'Neurologia', 'Neurologia Pediátrica', 'Oncologia', 'Oncologia Pediátrica', 'Pneumologia Pediátrica', 'Psiquiatria da Infância',
+        'Reumatologia Pediátrica', 'Terapia Intensiva', 'Transplante de Medula Óssea', 'Transplante Hepático'
       ],
       'Grupo 3': [
-        'Especialidade 3A', 'Especialidade 3B', 'Especialidade 3C'
+        'Cancerologia', 'Cardiologia', 'Generalista', 'Medicina de Urgência', 'Médicos', 'Nefrologia', 'Reumatologia'
       ],
       'Grupo 4': [
-        'Especialidade 4A', 'Especialidade 4B', 'Especialidade 4C'
+        'Anestesiologia', 'Cirurgia Cardiovascular', 'Cirurgia Geral', 'Cirurgia Pediátrica', 'Cirurgia Plástica', 'Cirurgia Torácica',
+        'Cirurgia Vascular', 'Ginecologia e Obstetrícia', 'Mastologia', 'Neurocirurgia', 'Oftalmologia', 'Ortopedia e Traumatologia',
+        'Otorrinolaringologia', 'Urologia'
       ],
       'Grupo D1': [
-        'Odonto 1A', 'Odonto 1B', 'Odonto 1C'
+        'Odontologia', 'Odontologia com implante e/ou cirurgia, Ortodontia e demais especialidades'
       ],
       'Grupo D2': [
-        'Odonto 2A', 'Odonto 2B', 'Odonto 2C'
+        'Odontologia', 'Procedimentos Estéticos'
       ],
       'Grupo D3': [
-        'Odonto 3A', 'Odonto 3B', 'Odonto 3C'
+        'Cirurgia Oral', 'Endodontia', 'Periodontia', 'Implantodontia'
       ],
       'Grupo D4': [
-        'Odonto 4A', 'Odonto 4B', 'Odonto 4C'
+        'Odontopediatria', 'Radiologia Odontológica', 'Patologia Bucal', 'Disfunção Temporomandibular'
       ]
     };
     function preencherEspecialidades(grupo) {
       const select = document.getElementById('especialidade');
       select.innerHTML = '<option value="">Selecione sua especialidade</option>';
-      (especialidadesPorGrupo[grupo] || []).forEach(function (esp) {
-        const opt = document.createElement('option');
-        opt.value = esp;
-        opt.textContent = esp;
-        select.appendChild(opt);
-      });
+
+      // Debug: verificar se o grupo existe
+      console.log('Grupo recebido:', grupo);
+      console.log('Grupos disponíveis:', Object.keys(especialidadesPorGrupo));
+
+      let especialidades = especialidadesPorGrupo[grupo];
+
+      // Se não encontrar, tentar encontrar por similaridade
+      if (!especialidades) {
+        const gruposDisponiveis = Object.keys(especialidadesPorGrupo);
+        const grupoEncontrado = gruposDisponiveis.find(g =>
+          g.toLowerCase().includes(grupo.toLowerCase()) ||
+          grupo.toLowerCase().includes(g.toLowerCase())
+        );
+
+        if (grupoEncontrado) {
+          console.log('Grupo encontrado por similaridade:', grupoEncontrado);
+          especialidades = especialidadesPorGrupo[grupoEncontrado];
+        }
+      }
+
+      if (especialidades) {
+        console.log('Especialidades encontradas:', especialidades);
+        especialidades.forEach(function (esp) {
+          const opt = document.createElement('option');
+          opt.value = esp;
+          opt.textContent = esp;
+          select.appendChild(opt);
+        });
+      } else {
+        console.log('Grupo não encontrado:', grupo);
+      }
     }
-    if (grupo) {
-      document.getElementById('grupo').value = grupo;
-      preencherEspecialidades(grupo);
+
+    if (grupoLimpo) {
+      document.getElementById('grupo').value = grupoLimpo;
+      preencherEspecialidades(grupoLimpo);
+
+      // Mostrar descrição apenas para o Grupo 1
+      const grupo1Description = document.getElementById('grupo1Description');
+      if (grupo1Description) {
+        if (grupoLimpo === 'Grupo 1' || grupoLimpo === 'Grupo 1 Retroativo') {
+          grupo1Description.style.display = 'block';
+        } else {
+          grupo1Description.style.display = 'none';
+        }
+      }
+    } else {
+      console.log('Nenhum grupo foi passado na URL');
     }
     // Formulário para WhatsApp
     document.getElementById('contratarForm').addEventListener('submit', function (e) {
