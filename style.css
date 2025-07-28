@@ -970,6 +970,12 @@
       color: #a7f3d0;
     }
 
+    @media (max-width: 1424px){
+      .nav-menu a {
+        font-size: 14px;
+      }
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       .nav-menu {
