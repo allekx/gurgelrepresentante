@@ -149,7 +149,7 @@ planForm.addEventListener('submit', function (e) {
   const plano = document.getElementById('planName').value.trim();
   if (!nome || !email || !cpf || !plano) return;
   const msg = `Olá! Gostaria de contratar um plano de saúde.\nPlano: ${plano}\nNome: ${nome}\nE-mail: ${email}\nCPF: ${cpf}`;
-  const url = `https://wa.me/5592992534622?text=${encodeURIComponent(msg)}`;
+  const url = `https://wa.me/5592982910122?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
   planModal.style.display = 'none';
   document.body.style.overflow = '';
