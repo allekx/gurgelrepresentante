@@ -1266,3 +1266,36 @@
         transform: translateY(0);
       }
     }
+
+    .documents-list {
+      display: block;
+      padding: 0;
+      margin: 0 0 1rem 0;
+    }
+
+    .documents-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+      line-height: 1.4;
+      color: #374151;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .documents-list li i {
+      color: #0d9488;
+      font-size: 1.2rem;
+      min-width: 22px;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .documents-list li strong {
+      color: #1f2937;
+      font-weight: 600;
+      margin-right: 0.3rem;
+    }

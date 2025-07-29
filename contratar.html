@@ -626,6 +626,10 @@
     }
 
     @media (max-width: 480px) {
+      main {
+        margin-top: 3rem;
+      }
+
       .contratar-container {
         margin: 10px;
         padding: 1rem 0.8rem;
@@ -673,10 +677,12 @@
   </header>
   <main>
     <div class="contratar-container">
-      <button onclick="window.history.back()" class="btn btn-secondary" style="width:100%;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;font-size:1rem; color: #0d9488;">
-        <span style="font-size:1.2em;">&#8592;</span> Voltar
-      </button>
-      <h2>Contratar Grupo</h2>
+      <div style="width:100%;text-align:left;">
+        <button onclick="window.history.back()" class="btn btn-secondary" style="margin-bottom:1rem;display:inline-flex;align-items:center;gap:0.5rem;font-size:1rem; color: #0d9488;">
+          <span style="font-size:1.2em;">&#8592;</span> Voltar
+        </button>
+      </div>
+      <h2>Contratar Plano</h2>
 
       <div class="contratar-content">
         <!-- Seção do Formulário -->
@@ -697,6 +703,10 @@
             <div>
               <label for="cpf">CPF</label>
               <input type="text" id="cpf" name="cpf" placeholder="Seu CPF" maxlength="14" required>
+            </div>
+            <div>
+              <label for="crm">CRM/CRO/COREN/CREFITO</label>
+              <input type="text" id="crm" name="crm" placeholder="Número do CRM/CRO/COREN/CREFITO" required>
             </div>
             <div>
               <label for="dataNascimento">Data de Nascimento</label>
@@ -1137,8 +1147,9 @@
       const especialidade = document.getElementById('especialidade').value;
       const grupo = document.getElementById('grupo').value;
       const dataNascimento = document.getElementById('dataNascimento').value;
+      const crm = document.getElementById('crm').value;
 
-      let msg = `Olá! Gostaria de contratar o ${grupo}.\n\n📋 Dados Pessoais:\nNome: ${nome}\nE-mail: ${email}\nCPF: ${cpf}\nData de Nascimento: ${dataNascimento}\nEspecialidade: ${especialidade}`;
+      let msg = `Olá! Gostaria de contratar o ${grupo}.\n\n📋 Dados Pessoais:\nNome: ${nome}\nE-mail: ${email}\nCPF: ${cpf}\nCRM/CRO/COREN/CREFITO: ${crm}\nData de Nascimento: ${dataNascimento}\nEspecialidade: ${especialidade}`;
 
       msg += `\n\n📄 Documentos Necessários:\n`;
       msg += `• Foto da Frente do CRM\n`;
