@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Planos Odontológicos</title>
+</head>
+
+<style>
+  :root {
+  --primary: #00796b;
+  --secondary: #004d40;
+  --light: #f4f4f4;
+  --dark: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+header {
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+#search {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 2rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.specialties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.specialty-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.specialty-card:hover {
+  transform: scale(1.03);
+  background-color: var(--primary);
+  color: white;
+}
+
+footer {
+  background-color: var(--secondary);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+
+</style>
+
+
+
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Planos Odontológicos</h1>
+    </div>
+  </header>
+  <main class="container">
+    <section id="specialties">
+      <input type="text" id="search" placeholder="Buscar especialidade..." />
+      <div class="specialties-grid" id="specialtiesList">
+        <!-- gerado dinamicamente via JS -->
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy;  2025 - Todos os direitos reservados.</p>
+  </footer>
+  <script>
+    
+    const specialties = [
+  "Cirurgia Bucomaxilo",
+  "Odontologia com implante e/ou cirurgia, ortodontia e demais especialidades",
+  "Procedimentos Estéticos"
+];
+
+const specialtiesList = document.getElementById('specialtiesList');
+
+function renderSpecialties(list) {
+  specialtiesList.innerHTML = '';
+  list.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'specialty-card';
+    div.textContent = item;
+    specialtiesList.appendChild(div);
+  });
+}
+
+renderSpecialties(specialties);
+
+const search = document.getElementById('search');
+search.addEventListener('input', (e) => {
+  const filtered = specialties.filter(item => 
+    item.toLowerCase().includes(e.target.value.toLowerCase())
+  );
+  renderSpecialties(filtered);
+});
+
+
+  </script>
+</body>
+</html>

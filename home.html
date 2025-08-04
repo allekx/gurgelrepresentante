@@ -128,6 +128,30 @@
         margin-bottom: 1.5rem;
       }
     }
+    .btn-ver-planos {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: none;
+  margin-bottom: 2rem;
+  color: #007a5c; /* cor parecida com o verde da imagem */
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.btn-ver-planos i {
+  font-size: 16px;
+}
+.btn-ver-planos a {
+   text-decoration: none;
+  color: inherit; 
+}
+.btn-ver-planos:hover {
+  color: #004c3f;
+}
   </style>
 
 </head>
@@ -174,7 +198,7 @@
       <li><a href="#home"><i class="fas fa-home"></i>Início</a></li>
       <li><a href="#about"><i class="fas fa-info-circle"></i>Anadem</a></li>
       <li><a href="#about2"><i class="fas fa-info-circle"></i>Cirurgia Segura</a></li>
-      <li><a href="#statistics"><i class="fas fa-chart-bar"></i>Estatísticas</a></li>
+      <!--<li><a href="#statistics"><i class="fas fa-chart-bar"></i>Estatísticas</a></li>-->
       <!--<li><a href="#services"><i class="fas fa-cogs"></i>Serviços</a></li>-->
       <li><a href="#pricing"><i class="fas fa-tags"></i>Planos</a></li>
       <li><a href="#contact"><i class="fas fa-envelope"></i>Contato</a></li>
@@ -336,15 +360,20 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- Pricing Section - Planos de Saúde -->
   <section class="pricing" id="pricing">
+
     <div class="container">
       <div class="section-header">
-        <h2>Planos de Saúde - Grupos Médicos</h2>
+        <h2>Planos de Saúde - Médicos</h2>
         <p>Escolha o grupo ideal para sua proteção profissional</p>
       </div>
+  <button class="btn-ver-planos" id="verPlanosBtn">
+    <i class="fas fa-th-large"></i>
+    <span><a href="./médicos.html">VER TODOS OS PLANOS</span></a>
+  </button>
       <div class="pricing-grid">
         <!-- Grupo 1 -->
         <div class="pricing-card">
@@ -432,6 +461,10 @@
         <h2>Planos de Odontologia - Grupos</h2>
         <p>Proteção completa para profissionais de odontologia</p>
       </div>
+        <button class="btn-ver-planos" id="verPlanosBtn">
+    <i class="fas fa-th-large"></i>
+    <span><a href="./odontologia.html">VER TODOS OS PLANOS</span></a>
+  </button>
       <div class="pricing-grid">
         <!-- Grupo D1 -->
         <div class="pricing-card">
