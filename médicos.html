@@ -1,86 +1,228 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Planos Médicos</title>
 </head>
 
 <style>
   :root {
-  --primary: #00796b;
-  --secondary: #004d40;
-  --light: #f4f4f4;
-  --dark: #333;
-}
+    --primary: #00796b;
+    --secondary: #004d40;
+    --light: #f4f4f4;
+    --dark: #333;
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--light);
-  color: var(--dark);
-}
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+  }
 
-header {
-  background-color: var(--primary);
-  color: white;
-  padding: 1rem 0;
-  text-align: center;
-}
+  header {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+  }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 1rem;
-}
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 1rem;
+  }
 
-#search {
-  width: 100%;
-  padding: 0.75rem;
-  margin: 2rem 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
+  #search {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 2rem 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
 
-.specialties-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-}
+  .specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
 
-.specialty-card {
-  background-color: white;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-  cursor: pointer;
-}
+  .specialty-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+  }
 
-.specialty-card:hover {
-  transform: scale(1.03);
-  background-color: var(--primary);
-  color: white;
-}
+  .specialty-card:hover {
+    transform: scale(1.03);
+    background-color: var(--primary);
+    color: white;
+  }
 
-footer {
-  background-color: var(--secondary);
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
-}
+  footer {
+    background-color: var(--secondary);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
 
+  /* Modal de seleção de plano */
+  .plan-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
 
+  .plan-modal {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .plan-modal h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .plan-modal p {
+    color: var(--dark);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .plan-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .plan-option {
+    flex: 1;
+    padding: 1.5rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .plan-option:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .plan-option.selected {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+  }
+
+  .plan-option.green.selected {
+    border-color: #10b981;
+    background: #10b981;
+  }
+
+  .plan-option.black.selected {
+    border-color: #374151;
+    background: #374151;
+  }
+
+  .plan-option h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-option p {
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .plan-option.selected p {
+    opacity: 1;
+  }
+
+  .modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--secondary);
+  }
+
+  .btn-secondary {
+    background: #6b7280;
+    color: white;
+  }
+
+  .btn-secondary:hover {
+    background: #4b5563;
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .plan-modal {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+
+    .plan-options {
+      flex-direction: column;
+    }
+
+    .modal-buttons {
+      flex-direction: column;
+    }
+  }
 </style>
-
-
-
 
 <body>
   <header>
@@ -89,6 +231,11 @@ footer {
     </div>
   </header>
   <main class="container">
+    <div style="width:100%;text-align:left;margin-bottom:1rem;">
+      <button onclick="window.history.back()" class="btn btn-secondary" style="display:inline-flex;align-items:center;gap:0.5rem;font-size:1rem; color: #00796b; background: white; border: 2px solid #00796b;">
+        <span style="font-size:1.2em;">&#8592;</span> Voltar
+      </button>
+    </div>
     <section id="specialties">
       <input type="text" id="search" placeholder="Buscar especialidade..." />
       <div class="specialties-grid" id="specialtiesList">
@@ -97,96 +244,183 @@ footer {
     </section>
   </main>
   <footer>
-    <p>&copy;  2025 - Todos os direitos reservados.</p>
+    <p>&copy; 2025 - Todos os direitos reservados.</p>
   </footer>
+
+  <!-- Modal de seleção de plano -->
+  <div class="plan-modal-overlay" id="planModal" style="display: none;">
+    <div class="plan-modal">
+      <h2>Escolha seu Plano</h2>
+      <p>Selecione o tipo de plano para a especialidade: <strong id="selectedSpecialty"></strong></p>
+
+      <div class="plan-options">
+        <div class="plan-option green" data-plan="green">
+          <h3>Plano Green</h3>
+          <p>Plano básico com proteção essencial</p>
+        </div>
+        <div class="plan-option black" data-plan="black">
+          <h3>Plano Black</h3>
+          <p>Plano premium com cobertura ampliada</p>
+        </div>
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+        <button class="btn btn-primary" id="confirmBtn" disabled>Continuar</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    
+
     const specialties = [
-  "Acupuntura",
-  "Alergia e Imunologia",
-  "Anestesiologia",
-  "Angiologia",
-  "Cancerologia",
-  "Cardiologia",
-  "Cirurgia Cabeça e Pescoço",
-  "Cirurgia Cardio Vascular",
-  "Cirurgia de Mão",
-  "Cirurgia do Aparelho Digestivo",
-  "Cirurgia Endovascular",
-  "Cirurgia Geral",
-  "Cirurgia Oncológica",
-  "Cirurgia Plástica",
-  "Cirurgia Torácica",
-  "Cirurgia Vascular",
-  "Clínica Médica",
-  "Coloproctologia",
-  "Dermatologia Invasiva",
-  "Dermatologia Não Invasiva",
-  "Endocrinologia e Metabologia",
-  "Endoscopia",
-  "Gastroenterologia",
-  "Genética Médica",
-  "Geriatria",
-  "Ginecologia e Obstetrícia",
-  "Ginecologia Sem Obstetrícia",
-  "Hematologia e Hemoterapia",
-  "Homeopatia",
-  "Infectologia",
-  "Mastologia",
-  "Medicina da Família e Comunidade",
-  "Medicina de Urgência",
-  "Medicina do Trabalho",
-  "Medicina do Tráfego",
-  "Medicina Esportiva",
-  "Medicina Física e Reabilitação",
-  "Medicina Intensiva",
-  "Medicina Laboratorial",
-  "Medicina Legal e Perícia Médica",
-  "Medicina Nuclear",
-  "Medicina Preventiva e Social",
-  "Médicos Recém-Formados",
-  "Nefrologia",
-  "Neurocirurgia",
-  "Neurologia",
-  "Nutrologia",
-  "Oftalmologia",
-  "Otorrinolaringologia",
-  "Patologia",
-  "Patologia Clínica",
-  "Pediatria",
-  "Pediatria Intensiva",
-  "Pneumologia",
-  "Psiquiatria",
-  "Radiologia e Diagnóstico por Imagem",
-  "Radioterapia",
-  "Reumatologia",
-  "Traumatologia e Ortopedia",
-  "Urologia"
-];
+      "Acupuntura",
+      "Alergia e Imunologia",
+      "Anestesiologia",
+      "Angiologia",
+      "Cancerologia",
+      "Cardiologia",
+      "Cirurgia Cabeça e Pescoço",
+      "Cirurgia Cardio Vascular",
+      "Cirurgia de Mão",
+      "Cirurgia do Aparelho Digestivo",
+      "Cirurgia Endovascular",
+      "Cirurgia Geral",
+      "Cirurgia Oncológica",
+      "Cirurgia Plástica",
+      "Cirurgia Torácica",
+      "Cirurgia Vascular",
+      "Clínica Médica",
+      "Coloproctologia",
+      "Dermatologia Invasiva",
+      "Dermatologia Não Invasiva",
+      "Endocrinologia e Metabologia",
+      "Endoscopia",
+      "Gastroenterologia",
+      "Genética Médica",
+      "Geriatria",
+      "Ginecologia e Obstetrícia",
+      "Ginecologia Sem Obstetrícia",
+      "Hematologia e Hemoterapia",
+      "Homeopatia",
+      "Infectologia",
+      "Mastologia",
+      "Medicina da Família e Comunidade",
+      "Medicina de Urgência",
+      "Medicina do Trabalho",
+      "Medicina do Tráfego",
+      "Medicina Esportiva",
+      "Medicina Física e Reabilitação",
+      "Medicina Intensiva",
+      "Medicina Laboratorial",
+      "Medicina Legal e Perícia Médica",
+      "Medicina Nuclear",
+      "Medicina Preventiva e Social",
+      "Médicos Recém-Formados",
+      "Nefrologia",
+      "Neurocirurgia",
+      "Neurologia",
+      "Nutrologia",
+      "Oftalmologia",
+      "Otorrinolaringologia",
+      "Patologia",
+      "Patologia Clínica",
+      "Pediatria",
+      "Pediatria Intensiva",
+      "Pneumologia",
+      "Psiquiatria",
+      "Radiologia e Diagnóstico por Imagem",
+      "Radioterapia",
+      "Reumatologia",
+      "Traumatologia e Ortopedia",
+      "Urologia"
+    ];
 
-const specialtiesList = document.getElementById('specialtiesList');
+    const specialtiesList = document.getElementById('specialtiesList');
+    const planModal = document.getElementById('planModal');
+    const selectedSpecialtySpan = document.getElementById('selectedSpecialty');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
 
-function renderSpecialties(list) {
-  specialtiesList.innerHTML = '';
-  list.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'specialty-card';
-    div.textContent = item;
-    specialtiesList.appendChild(div);
-  });
-}
+    let selectedSpecialty = '';
+    let selectedPlan = '';
 
-renderSpecialties(specialties);
+    function renderSpecialties(list) {
+      specialtiesList.innerHTML = '';
+      list.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'specialty-card';
+        div.textContent = item;
+        div.addEventListener('click', () => openPlanModal(item));
+        specialtiesList.appendChild(div);
+      });
+    }
 
-const search = document.getElementById('search');
-search.addEventListener('input', (e) => {
-  const filtered = specialties.filter(item => 
-    item.toLowerCase().includes(e.target.value.toLowerCase())
-  );
-  renderSpecialties(filtered);
-});
+    function openPlanModal(specialty) {
+      selectedSpecialty = specialty;
+      selectedSpecialtySpan.textContent = specialty;
+      planModal.style.display = 'flex';
+
+      // Reset selections
+      document.querySelectorAll('.plan-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      confirmBtn.disabled = true;
+      selectedPlan = '';
+    }
+
+    function closePlanModal() {
+      planModal.style.display = 'none';
+      selectedSpecialty = '';
+      selectedPlan = '';
+    }
+
+    // Event listeners para seleção de plano
+    document.querySelectorAll('.plan-option').forEach(option => {
+      option.addEventListener('click', () => {
+        // Remove seleção anterior
+        document.querySelectorAll('.plan-option').forEach(opt => {
+          opt.classList.remove('selected');
+        });
+
+        // Seleciona o plano clicado
+        option.classList.add('selected');
+        selectedPlan = option.dataset.plan;
+        confirmBtn.disabled = false;
+      });
+    });
+
+    // Botão cancelar
+    cancelBtn.addEventListener('click', closePlanModal);
+
+    // Botão confirmar
+    confirmBtn.addEventListener('click', () => {
+      if (selectedSpecialty && selectedPlan) {
+        // Redireciona para o formulário de contratação com os parâmetros
+        const url = `contratar.html?especialidade=${encodeURIComponent(selectedSpecialty)}&plano=${selectedPlan}`;
+        window.location.href = url;
+      }
+    });
+
+    // Fechar modal ao clicar fora dele
+    planModal.addEventListener('click', (e) => {
+      if (e.target === planModal) {
+        closePlanModal();
+      }
+    });
+
+    renderSpecialties(specialties);
+
+    const search = document.getElementById('search');
+    search.addEventListener('input', (e) => {
+      const filtered = specialties.filter(item =>
+        item.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      renderSpecialties(filtered);
+    });
 
 
   </script>
 </body>
+
 </html>

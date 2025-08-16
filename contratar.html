@@ -718,6 +718,10 @@
                 <option value="">Selecione sua especialidade</option>
               </select>
             </div>
+            <div>
+              <label for="tipoPlano">Tipo de Plano</label>
+              <input type="text" id="tipoPlano" name="tipoPlano" readonly required>
+            </div>
 
             <!-- Documentos Necessários -->
             <div class="upload-section">
@@ -994,92 +998,120 @@
   </div>
 
   <script>
-    // Preencher grupo selecionado a partir da query string
+    // Capturar parâmetros da URL
     const urlParams = new URLSearchParams(window.location.search);
+    const especialidade = urlParams.get('especialidade');
+    const plano = urlParams.get('plano');
     const grupo = urlParams.get('grupo');
 
-    // Limpar espaços extras do grupo
-    const grupoLimpo = grupo ? grupo.trim() : '';
+    // Preencher campos se vierem da seleção de especialidade
+    if (especialidade && plano) {
+      document.getElementById('tipoPlano').value = plano === 'green' ? 'Plano Green' : 'Plano Black';
 
-    // Especialidades por grupo
-    const especialidadesPorGrupo = {
-      'Grupo 1': [
-        'Acupuntura', 'Alergia e Imunologia', 'Angiologia', 'Clínica Médica', 'Coloproctologia', 'Dermatologia Não Invasiva',
-        'Endocrinologia e Metabologia', 'Endoscopia', 'Gastroenterologia', 'Genética Médica', 'Geriatria', 'Homeopatia',
-        'Infectologia', 'Medicina da Família e Comunidade', 'Medicina do Trabalho', 'Medicina do Tráfego', 'Medicina Esportiva',
-        'Medicina Física e Reabilitação', 'Medicina Laboratorial', 'Medicina Legal e Perícia Médica', 'Medicina Nuclear',
-        'Medicina Preventiva e Social', 'Médicos', 'Nutrologia', 'Patologia', 'Patologia Clínica', 'Pediatria',
-        'Pediatria Intensiva', 'Pneumologia', 'Psiquiatria', 'Radiologia e Diagnóstico por Imagem'
-      ],
-      'Grupo 2': [
-        'Dermatologia Invasiva', 'Endocrinologia Pediátrica', 'Gastroenterologia Pediátrica', 'Hematologia', 'Hematologia Pediátrica',
-        'Infectologia Pediátrica', 'Medicina de Emergência', 'Medicina Intensiva', 'Medicina Nuclear Pediátrica', 'Neonatologia',
-        'Neurologia', 'Neurologia Pediátrica', 'Oncologia', 'Oncologia Pediátrica', 'Pneumologia Pediátrica', 'Psiquiatria da Infância',
-        'Reumatologia Pediátrica', 'Terapia Intensiva', 'Transplante de Medula Óssea', 'Transplante Hepático'
-      ],
-      'Grupo 3': [
-        'Cancerologia', 'Cardiologia', 'Generalista', 'Medicina de Urgência', 'Médicos', 'Nefrologia', 'Reumatologia'
-      ],
-      'Grupo 4': [
-        'Anestesiologia', 'Cirurgia Cardiovascular', 'Cirurgia Geral', 'Cirurgia Pediátrica', 'Cirurgia Plástica', 'Cirurgia Torácica',
-        'Cirurgia Vascular', 'Ginecologia e Obstetrícia', 'Mastologia', 'Neurocirurgia', 'Oftalmologia', 'Ortopedia e Traumatologia',
-        'Otorrinolaringologia', 'Urologia'
-      ],
-      'Grupo D1': [
-        'Odontologia', 'Odontologia com implante e/ou cirurgia, Ortodontia e demais especialidades'
-      ],
-      'Grupo D2': [
-        'Odontologia', 'Procedimentos Estéticos'
-      ],
-      'Grupo D3': [
-        'Cirurgia Oral', 'Endodontia', 'Periodontia', 'Implantodontia'
-      ],
-      'Grupo D4': [
-        'Odontopediatria', 'Radiologia Odontológica', 'Patologia Bucal', 'Disfunção Temporomandibular'
-      ]
-    };
-    function preencherEspecialidades(grupo) {
-      const select = document.getElementById('especialidade');
-      select.innerHTML = '<option value="">Selecione sua especialidade</option>';
-
-      // Debug: verificar se o grupo existe
-      console.log('Grupo recebido:', grupo);
-      console.log('Grupos disponíveis:', Object.keys(especialidadesPorGrupo));
-
-      let especialidades = especialidadesPorGrupo[grupo];
-
-      // Se não encontrar, tentar encontrar por similaridade
-      if (!especialidades) {
-        const gruposDisponiveis = Object.keys(especialidadesPorGrupo);
-        const grupoEncontrado = gruposDisponiveis.find(g =>
-          g.toLowerCase().includes(grupo.toLowerCase()) ||
-          grupo.toLowerCase().includes(g.toLowerCase())
-        );
-
-        if (grupoEncontrado) {
-          console.log('Grupo encontrado por similaridade:', grupoEncontrado);
-          especialidades = especialidadesPorGrupo[grupoEncontrado];
-        }
+      // Determinar grupo baseado na especialidade
+      let grupoDeterminado = determinarGrupoPorEspecialidade(especialidade);
+      if (grupoDeterminado) {
+        document.getElementById('grupo').value = grupoDeterminado;
       }
 
-      if (especialidades) {
-        console.log('Especialidades encontradas:', especialidades);
-        especialidades.forEach(function (esp) {
-          const opt = document.createElement('option');
-          opt.value = esp;
-          opt.textContent = esp;
-          select.appendChild(opt);
-        });
-      } else {
-        console.log('Grupo não encontrado:', grupo);
+      // Mostrar descrição baseada no grupo determinado
+      mostrarDescricaoGrupo(grupoDeterminado);
+    } else if (grupo) {
+      // Lógica existente para grupos vindos da página inicial
+      const grupoLimpo = grupo.trim();
+      document.getElementById('grupo').value = grupoLimpo;
+      mostrarDescricaoGrupo(grupoLimpo);
+    }
+
+    // Preencher opções de especialidades no select
+    preencherEspecialidades();
+
+    // Função para preencher todas as especialidades no select
+    function preencherEspecialidades() {
+      const select = document.getElementById('especialidade');
+      const todasEspecialidades = [
+        // Especialidades Médicas
+        'Acupuntura', 'Alergia e Imunologia', 'Anestesiologia', 'Angiologia', 'Cancerologia', 'Cardiologia',
+        'Cirurgia Cabeça e Pescoço', 'Cirurgia Cardio Vascular', 'Cirurgia de Mão', 'Cirurgia do Aparelho Digestivo',
+        'Cirurgia Endovascular', 'Cirurgia Geral', 'Cirurgia Oncológica', 'Cirurgia Plástica', 'Cirurgia Torácica',
+        'Cirurgia Vascular', 'Clínica Médica', 'Coloproctologia', 'Dermatologia Invasiva', 'Dermatologia Não Invasiva',
+        'Endocrinologia e Metabologia', 'Endoscopia', 'Gastroenterologia', 'Genética Médica', 'Geriatria',
+        'Ginecologia e Obstetrícia', 'Ginecologia Sem Obstetrícia', 'Hematologia e Hemoterapia', 'Homeopatia',
+        'Infectologia', 'Mastologia', 'Medicina da Família e Comunidade', 'Medicina de Urgência', 'Medicina do Trabalho',
+        'Medicina do Tráfego', 'Medicina Esportiva', 'Medicina Física e Reabilitação', 'Medicina Intensiva',
+        'Medicina Laboratorial', 'Medicina Legal e Perícia Médica', 'Medicina Nuclear', 'Medicina Preventiva e Social',
+        'Médicos Recém-Formados', 'Nefrologia', 'Neurocirurgia', 'Neurologia', 'Nutrologia', 'Oftalmologia',
+        'Otorrinolaringologia', 'Patologia', 'Patologia Clínica', 'Pediatria', 'Pediatria Intensiva', 'Pneumologia',
+        'Psiquiatria', 'Radiologia e Diagnóstico por Imagem', 'Radioterapia', 'Reumatologia', 'Traumatologia e Ortopedia',
+        'Urologia',
+        // Especialidades Odontológicas
+        'Cirurgia Bucomaxilo', 'Odontologia com implante e/ou cirurgia, ortodontia e demais especialidades',
+        'Procedimentos Estéticos'
+      ];
+
+      // Limpar opções existentes
+      select.innerHTML = '<option value="">Selecione sua especialidade</option>';
+
+      // Adicionar todas as especialidades
+      todasEspecialidades.forEach(esp => {
+        const option = document.createElement('option');
+        option.value = esp;
+        option.textContent = esp;
+        select.appendChild(option);
+      });
+
+      // Se vier de uma página de especialidades, selecionar automaticamente
+      if (especialidade) {
+        select.value = especialidade;
       }
     }
 
-    if (grupoLimpo) {
-      document.getElementById('grupo').value = grupoLimpo;
-      preencherEspecialidades(grupoLimpo);
+    // Função para determinar grupo baseado na especialidade
+    function determinarGrupoPorEspecialidade(especialidade) {
+      const especialidadesPorGrupo = {
+        'Grupo 1': [
+          'Acupuntura', 'Alergia e Imunologia', 'Angiologia', 'Clínica Médica', 'Coloproctologia', 'Dermatologia Não Invasiva',
+          'Endocrinologia e Metabologia', 'Endoscopia', 'Gastroenterologia', 'Genética Médica', 'Geriatria', 'Homeopatia',
+          'Infectologia', 'Medicina da Família e Comunidade', 'Medicina do Trabalho', 'Medicina do Tráfego', 'Medicina Esportiva',
+          'Medicina Física e Reabilitação', 'Medicina Laboratorial', 'Medicina Legal e Perícia Médica', 'Medicina Nuclear',
+          'Medicina Preventiva e Social', 'Médicos Recém-Formados', 'Nutrologia', 'Patologia', 'Patologia Clínica', 'Pediatria',
+          'Pediatria Intensiva', 'Pneumologia', 'Psiquiatria', 'Radiologia e Diagnóstico por Imagem'
+        ],
+        'Grupo 2': [
+          'Dermatologia Invasiva', 'Endocrinologia Pediátrica', 'Gastroenterologia Pediátrica', 'Hematologia e Hemoterapia', 'Hematologia Pediátrica',
+          'Infectologia Pediátrica', 'Medicina de Urgência', 'Medicina Intensiva', 'Medicina Nuclear Pediátrica', 'Neonatologia',
+          'Neurologia', 'Neurologia Pediátrica', 'Oncologia', 'Oncologia Pediátrica', 'Pneumologia Pediátrica', 'Psiquiatria da Infância',
+          'Reumatologia Pediátrica', 'Terapia Intensiva', 'Transplante de Medula Óssea', 'Transplante Hepático'
+        ],
+        'Grupo 3': [
+          'Cancerologia', 'Cardiologia', 'Generalista', 'Medicina de Urgência', 'Médicos', 'Nefrologia', 'Reumatologia'
+        ],
+        'Grupo 4': [
+          'Anestesiologia', 'Cirurgia Cardio Vascular', 'Cirurgia Geral', 'Cirurgia Pediátrica', 'Cirurgia Plástica', 'Cirurgia Torácica',
+          'Cirurgia Vascular', 'Ginecologia e Obstetrícia', 'Mastologia', 'Neurocirurgia', 'Oftalmologia', 'Traumatologia e Ortopedia',
+          'Otorrinolaringologia', 'Urologia'
+        ],
+        'Grupo D1': [
+          'Odontologia com implante e/ou cirurgia, ortodontia e demais especialidades'
+        ],
+        'Grupo D2': [
+          'Procedimentos Estéticos'
+        ]
+      };
 
-      // Mostrar descrição baseada no grupo selecionado
+      for (const [grupo, especialidades] of Object.entries(especialidadesPorGrupo)) {
+        if (especialidades.some(esp => esp.toLowerCase().includes(especialidade.toLowerCase()) ||
+          especialidade.toLowerCase().includes(esp.toLowerCase()))) {
+          return grupo;
+        }
+      }
+
+      // Se não encontrar correspondência exata, retornar grupo padrão
+      return 'Grupo 1';
+    }
+
+    // Função para mostrar descrição do grupo
+    function mostrarDescricaoGrupo(grupo) {
       const grupo1Description = document.getElementById('grupo1Description');
       const grupo2Description = document.getElementById('grupo2Description');
       const grupo2RetroativoDescription = document.getElementById('grupo2RetroativoDescription');
@@ -1089,52 +1121,19 @@
       if (grupo2Description) grupo2Description.style.display = 'none';
       if (grupo2RetroativoDescription) grupo2RetroativoDescription.style.display = 'none';
 
-      if (grupoLimpo === 'Grupo 1' || grupoLimpo === 'Grupo 1 Retroativo') {
+      if (grupo === 'Grupo 1' || grupo === 'Grupo 1 Retroativo') {
         if (grupo1Description) {
           grupo1Description.style.display = 'block';
-
-          // Atualizar preços e informações baseado no grupo
-          if (grupoLimpo === 'Grupo 1 Retroativo') {
-            // Atualizar preços para Grupo 1 com retroatividade
-            const prices = grupo1Description.querySelectorAll('.capital-price');
-            if (prices.length >= 3) {
-              prices[0].textContent = 'R$ 506,00/mês';
-              prices[1].textContent = 'R$ 657,80/mês';
-              prices[2].textContent = 'R$ 759,00/mês';
-            }
-
-            // Atualizar título
-            const title = grupo1Description.querySelector('.description-header span');
-            if (title) {
-              title.textContent = 'Proteção Completa - Grupo 1 com Retroatividade';
-            }
-          } else {
-            // Preços padrão para Grupo 1 normal
-            const prices = grupo1Description.querySelectorAll('.capital-price');
-            if (prices.length >= 3) {
-              prices[0].textContent = 'R$ 460,00/mês';
-              prices[1].textContent = 'R$ 598,00/mês';
-              prices[2].textContent = 'R$ 690,00/mês';
-            }
-
-            // Atualizar título
-            const title = grupo1Description.querySelector('.description-header span');
-            if (title) {
-              title.textContent = 'Proteção Completa - Grupo 1';
-            }
-          }
         }
-      } else if (grupoLimpo === 'Grupo 2') {
+      } else if (grupo === 'Grupo 2') {
         if (grupo2Description) {
           grupo2Description.style.display = 'block';
         }
-      } else if (grupoLimpo === 'Grupo 2 Retroativo') {
+      } else if (grupo === 'Grupo 2 Retroativo') {
         if (grupo2RetroativoDescription) {
           grupo2RetroativoDescription.style.display = 'block';
         }
       }
-    } else {
-      console.log('Nenhum grupo foi passado na URL');
     }
 
 
@@ -1149,7 +1148,7 @@
       const dataNascimento = document.getElementById('dataNascimento').value;
       const crm = document.getElementById('crm').value;
 
-      let msg = `Olá! Gostaria de contratar o ${grupo}.\n\n📋 Dados Pessoais:\nNome: ${nome}\nE-mail: ${email}\nCPF: ${cpf}\nCRM/CRO/COREN/CREFITO: ${crm}\nData de Nascimento: ${dataNascimento}\nEspecialidade: ${especialidade}`;
+      let msg = `Olá! Gostaria de contratar o ${grupo}.\n\n📋 Dados Pessoais:\nNome: ${nome}\nE-mail: ${email}\nCPF: ${cpf}\nCRM/CRO/COREN/CREFITO: ${crm}\nData de Nascimento: ${dataNascimento}\nEspecialidade: ${especialidade}\nTipo de Plano: ${document.getElementById('tipoPlano').value}`;
 
       msg += `\n\n📄 Documentos Necessários:\n`;
       msg += `• Foto da Frente do CRM\n`;

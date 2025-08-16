@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANADEM - Navegação</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin: 0;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00796b;
+      margin-bottom: 2rem;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .nav-card {
+      background: linear-gradient(135deg, #00796b 0%, #004d40 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .nav-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 121, 107, 0.3);
+    }
+
+    .nav-card h3 {
+      margin: 0 0 1rem 0;
+      font-size: 1.3rem;
+    }
+
+    .nav-card p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0 0;
+      text-align: left;
+    }
+
+    .feature-list li {
+      padding: 0.3rem 0;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .feature-list li:before {
+      content: "✓";
+      color: #4ade80;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🏥 ANADEM - Sistema de Planos</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+      Escolha uma opção para navegar pelo sistema de planos médicos e odontológicos
+    </p>
+
+    <div class="nav-grid">
+      <a href="home.html" class="nav-card">
+        <h3>🏠 Página Inicial</h3>
+        <p>Visão geral dos planos e grupos disponíveis</p>
+        <ul class="feature-list">
+          <li>Planos médicos por grupo</li>
+          <li>Planos odontológicos</li>
+          <li>Informações institucionais</li>
+        </ul>
+      </a>
+
+      <a href="médicos.html" class="nav-card">
+        <h3>👨‍⚕️ Especialidades Médicas</h3>
+        <p>Selecione sua especialidade e escolha entre plano Green ou Black</p>
+        <ul class="feature-list">
+          <li>Busca por especialidade</li>
+          <li>Seleção de plano (Green/Black)</li>
+          <li>Redirecionamento para contratação</li>
+        </ul>
+      </a>
+
+      <a href="odontologia.html" class="nav-card">
+        <h3>🦷 Especialidades Odontológicas</h3>
+        <p>Planos específicos para profissionais de odontologia</p>
+        <ul class="feature-list">
+          <li>Especialidades odontológicas</li>
+          <li>Seleção de plano (Green/Black)</li>
+          <li>Contratação direta</li>
+        </ul>
+      </a>
+
+      <a href="contratar.html" class="nav-card">
+        <h3>📝 Formulário de Contratação</h3>
+        <p>Formulário para contratação de planos</p>
+        <ul class="feature-list">
+          <li>Preenchimento automático</li>
+          <li>Envio via WhatsApp</li>
+          <li>Informações do plano</li>
+        </ul>
+      </a>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+      <p style="margin: 0; color: #666; font-size: 0.9rem;">
+        <strong>Como funciona:</strong> Clique em uma especialidade → Escolha Green ou Black → Preencha o formulário → Envie via WhatsApp
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>
