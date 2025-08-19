@@ -1,0 +1,10 @@
+----- CLI crash report at 2025-08-19T19:36:28.682Z
+Error Trace
+FailedToIdentifyProgramFlow: FailedToIdentifyProgramFlow
+    at _Command.<anonymous> (C:\Users\Atendimento2\AppData\Roaming\npm\node_modules\@wix\cli\src\program.ts:73:15)
+    at _Command.emit (node:events:518:28)
+    at _Command._parseCommand (C:\Users\Atendimento2\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1607:14)
+    at _Command.parseAsync (C:\Users\Atendimento2\AppData\Roaming\npm\node_modules\node_modules\commander\lib\command.js:1104:16)
+    at <anonymous> (C:\Users\Atendimento2\AppData\Roaming\npm\node_modules\@wix\cli\src\index.tsx:80:39)
+Error Info
+{}
