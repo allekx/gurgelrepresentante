@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="./img/logo.png">
+
+  <title>ANADEM | Representante Nelson Gurgel</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Estilos para diferenciar os grupos com cores */
+    .pricing-card:nth-child(1) {
+      background: linear-gradient(135deg, #0d9488 0%, #0b7c6b 100%);
+      color: white;
+    }
+
+    .pricing-card:nth-child(2) {
+      background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+      color: white;
+    }
+
+    .pricing-card:nth-child(3) {
+      background: linear-gradient(135deg, #0d9488 0%, #0b7c6b 100%);
+      color: white;
+    }
+
+    .pricing-card:nth-child(4) {
+      background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+      color: white;
+    }
+
+    /* Ajustes para texto branco nos cards coloridos */
+    .pricing-card:nth-child(1) .group-title,
+    .pricing-card:nth-child(2) .group-title,
+    .pricing-card:nth-child(3) .group-title,
+    .pricing-card:nth-child(4) .group-title {
+      color: white;
+    }
+
+    .pricing-card:nth-child(1) .pricing-header .price,
+    .pricing-card:nth-child(2) .pricing-header .price,
+    .pricing-card:nth-child(3) .pricing-header .price,
+    .pricing-card:nth-child(4) .pricing-header .price {
+      color: white;
+    }
+
+    .pricing-card:nth-child(1) .pricing-header .price-period,
+    .pricing-card:nth-child(2) .pricing-header .price-period,
+    .pricing-card:nth-child(3) .pricing-header .price-period,
+    .pricing-card:nth-child(4) .pricing-header .price-period {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .pricing-card:nth-child(1) .pricing-features li,
+    .pricing-card:nth-child(2) .pricing-features li,
+    .pricing-card:nth-child(3) .pricing-features li,
+    .pricing-card:nth-child(4) .pricing-features li {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .pricing-card:nth-child(1) .pricing-features li:hover,
+    .pricing-card:nth-child(2) .pricing-features li:hover,
+    .pricing-card:nth-child(3) .pricing-features li:hover,
+    .pricing-card:nth-child(4) .pricing-features li:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .pricing-card:nth-child(1) .pricing-features .check,
+    .pricing-card:nth-child(2) .pricing-features .check,
+    .pricing-card:nth-child(3) .pricing-features .check,
+    .pricing-card:nth-child(4) .pricing-features .check {
+      color: #10b981;
+    }
+
+    /* Botões com cores contrastantes */
+    .pricing-card:nth-child(1) .btn,
+    .pricing-card:nth-child(3) .btn {
+      background: #1f2937;
+      color: white;
+      border: 2px solid #1f2937;
+    }
+
+    .pricing-card:nth-child(1) .btn:hover,
+    .pricing-card:nth-child(3) .btn:hover {
+      background: #374151;
+      border-color: #374151;
+    }
+
+    .pricing-card:nth-child(2) .btn,
+    .pricing-card:nth-child(4) .btn {
+      background: #0d9488;
+      color: white;
+      border: 2px solid #0d9488;
+    }
+
+    .pricing-card:nth-child(2) .btn:hover,
+    .pricing-card:nth-child(4) .btn:hover {
+      background: #0b7c6b;
+      border-color: #0b7c6b;
+    }
+
+    /* Efeitos de hover para os cards */
+    .pricing-card:nth-child(1):hover,
+    .pricing-card:nth-child(3):hover {
+      box-shadow: 0 8px 32px rgba(13, 148, 136, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .pricing-card:nth-child(2):hover,
+    .pricing-card:nth-child(4):hover {
+      box-shadow: 0 8px 32px rgba(55, 65, 81, 0.3);
+      transform: translateY(-4px);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+
+      .pricing-card:nth-child(1),
+      .pricing-card:nth-child(2),
+      .pricing-card:nth-child(3),
+      .pricing-card:nth-child(4) {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    .btn-ver-planos {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      background: none;
+      margin-bottom: 2rem;
+      color: #007a5c;
+      /* cor parecida com o verde da imagem */
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .btn-ver-planos i {
+      font-size: 16px;
+    }
+
+    .btn-ver-planos a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .btn-ver-planos:hover {
+      color: #004c3f;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="logo"><img src="./img/logo-anadem.png" alt="Logo Anadem"> <img src="./img/logo_seguremed.png" alt="Logo Seguremed"></a>
+
+
+
+        <ul class="nav-menu">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#about">Anadem</a></li>
+          <li><a href="#about2">Cirurgia Segura</a></li>
+          <!--<li><a href="#statistics">Estatísticas</a></li>-->
+          <!--<li><a href="#services">Serviços</a></li>-->
+          <li><a href="#pricing">Planos</a></li>
+          <!--<li><a href="#contact">Contato</a></li>-->
+        </ul>
+        <div class="nav-contact">
+          <div class="phone-info">
+            <i class="fas fa-phone"></i>
+            <span>(92) 98291-0122</span>
+          </div>
+          <a href="#contact" class="btn btn-primary desktop-only">Fale Conosco</a>
+          <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <nav class="sidebar-menu" id="sidebarMenu">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Menu</span>
+      <button class="close-btn" id="closeSidebar"><i class="fas fa-times"></i></button>
+    </div>
+    <ul>
+      <li><a href="#home"><i class="fas fa-home"></i>Início</a></li>
+      <li><a href="#about"><i class="fas fa-info-circle"></i>Anadem</a></li>
+      <li><a href="#about2"><i class="fas fa-info-circle"></i>Cirurgia Segura</a></li>
+      <!--<li><a href="#statistics"><i class="fas fa-chart-bar"></i>Estatísticas</a></li>-->
+      <!--<li><a href="#services"><i class="fas fa-cogs"></i>Serviços</a></li>-->
+      <li><a href="#pricing"><i class="fas fa-tags"></i>Planos</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i>Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Por que adquirir uma Blindagem Médica Profissional?</h1>
+          <p>Atualmente, em média 4 Médicos são processados por hora no Brasil. Diante da crescente judicialização na área da saúde, os profissionais ficam cada vez mais vulneráveis.</p>
+          <p>Uma Blindagem Profissional irá oferecer amparo financeiro e jurídico diante de imprevistos, dando assim mais tranquilidade no exercício profissional.</p>
+          <div class="hero-buttons">
+            <a href="#pricing" class="btn btn-primary">
+              Conheça Nossos Planos
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#about" class="btn btn-secondary">Saiba Mais</a>
+          </div>
+        </div>
+        <!--  <div class="hero-image">
+          <div class="hero-card">
+            <img src="./img/exemplo-planos.png" alt="Ilustração profissional">
+            <div class="floating-icon orange">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="floating-icon blue">
+              <i class="fas fa-bolt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>-->
+  </section>
+
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>A MAIOR REDE DE BLINDAGEM PROFISSIONAL DO BRASIL</h2>
+          <p>A Anadem S.A. é uma Sociedade Anônima de capital fechado, dedicada a oferecer proteção jurídica e blindagem patrimonial a profissionais de saúde acusados de suposto erro no desempenho da sua atividade, por meio de escritórios de advocacia credenciados, especializados em Direito Médico e Odontológico.</p>
+          <p>A rede de advogados formada pela Anadem S.A atua há mais de 26 anos e apresenta soluções não apenas no campo jurídico, mas em diversas outras áreas de interesse dos clientes.</p>
+          <a href="#" class="btn btn-primary">Saiba Mais</a>
+        </div>
+        <div class="about-video">
+          <div class="video-wrapper">
+            <video controls width="100%">
+              <source src="https://anadem.org.br/wp-content/uploads/2024/11/ANADEM-Novo-video-institucional-whats.mp4" type="video/mp4">
+              Seu navegador não suporta vídeo HTML5.
+            </video>
+          </div>
+          <div class="video-info">
+            <div class="video-details">
+              <h3>Vídeo Institucional</h3>
+              <p>Conheça a Anadem</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- About Section Cirurgia Segura -->
+  <section class="about" id="about2">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>O QUE É O CIRURGIA SEGURA?</h2>
+          <p>Trata-se de uma cobertura exclusiva para intercorrências cirúrgicas que possam ocorrer antes, durante ou após um procedimento estético, oferecendo suporte imediato ao paciente e ao profissional.</p>
+          <p>Com o Cirurgia Segura, despesas médicas emergenciais e riscos como necrose de tecidos, rompimento de pontos e reações anestésicas estão cobertos até a alta hospitalar.</p>
+          <a href="#" class="btn btn-primary">Saiba Mais</a>
+        </div>
+        <div class="about-video">
+          <div class="video-wrapper">
+            <video controls width="100%">
+              <source src="https://adesaocirurgiasegura.com.br/wp-content/uploads/2022/02/CirSegura-2022.mp4?_=1" type="video/mp4">
+              Seu navegador não suporta vídeo HTML5.
+            </video>
+          </div>
+          <div class="video-info">
+            <div class="video-details">
+              <h3>Vídeo Institucional</h3>
+              <p>Conheça o Cirurgia Segura</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <!-- <section class="features" id="services">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>BENEFÍCIOS EXCLUSIVOS</h3>
+          <p>Acesso a benefícios exclusivos e descontos especiais para nossos clientes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>SEGURANÇA GARANTIDA</h3>
+          <p>Máxima segurança e proteção de dados com certificações internacionais.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>ATENDIMENTO RÁPIDO</h3>
+          <p>Suporte 24/7 com tempo de resposta garantido em até 2 horas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- Statistics Section -->
+  <!--<section class="statistics" id="statistics">
+    <div class="container">
+      <div class="section-header">
+        <h2>Números que Impressionam</h2>
+        <p>Resultados que comprovam nossa excelência no mercado</p>
+      </div>
+      <div class="statistics-grid">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stat-number" data-target="50000">0</div>
+          <div class="stat-label">Clientes Atendidos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-gavel"></i>
+          </div>
+          <div class="stat-number" data-target="15000">0</div>
+          <div class="stat-label">Processos Defendidos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-balance-scale"></i>
+          </div>
+          <div class="stat-number" data-target="95">0</div>
+          <div class="stat-label">% de Sucesso</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <div class="stat-number" data-target="500">0</div>
+          <div class="stat-label">Advogados Credenciados</div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Pricing Section - Planos de Saúde -->
+  <section class="pricing" id="pricing">
+
+    <div class="container">
+      <div class="section-header">
+        <h2>Planos de Saúde - Médicos</h2>
+        <p>Escolha o grupo ideal para sua proteção profissional</p>
+      </div>
+      <button class="btn-ver-planos" id="verPlanosBtn">
+        <i class="fas fa-th-large"></i>
+        <span><a href="./médicos.html">VER TODOS OS PLANOS</span></a>
+      </button>
+      <div class="pricing-grid">
+        <!-- Grupo 1 -->
+        <div class="pricing-card">
+          <div class="group-info" style="text-align:center;margin-bottom:1rem;">
+            <div class="group-title" style="font-weight:bold;font-size:1.1rem;">ANADEM – GRUPO 01</div>
+            <div class="group-price" style="color:#444;font-weight:600;font-size:1rem;"><span style="font-weight:700;color:#6b7280;font-size:0.98rem;"></span> </div>
+          </div>
+          <div class="pricing-header">
+            <h3 style="display: none;">Grupo 1</h3>
+            <div class="price"><span class="price-period" style="display: block;">A partir de:</span>R$ 460</div>
+          </div>
+          <div style="font-weight:600;color:#fff;margin-bottom:0.5rem;">Opções de Capital Segurado</div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check check"></i> R$ 500.000,00 - R$ 460,00/mês</li>
+            <li><i class="fas fa-check check"></i> R$ 800.000,00 - R$ 598,00/mês</li>
+            <li><i class="fas fa-check check"></i> R$ 1.000.000,00 - R$ 690,00/mês</li>
+          </ul>
+          <a href="contratar.html?grupo=Grupo%201" class="btn btn-primary" style="width: 100%; justify-content: center;">Quero este grupo</a>
+        </div>
+        <!-- Grupo 1 Retroatividade -->
+        <div class="pricing-card">
+          <div class="group-info" style="text-align:center;margin-bottom:1rem;">
+            <div class="group-title" style="font-weight:bold;font-size:1.1rem;">ANADEM – GRUPO 01 (COM RETROATIVIDADE DE 5 ANOS)</div>
+            <div class="group-price" style="color:#444;font-weight:600;font-size:1rem;"><span style="font-weight:700;color:#6b7280;font-size:0.98rem;"></span> </div>
+          </div>
+          <div class="pricing-header">
+            <h3 style="display: none;">Grupo 1 Retroativo</h3>
+            <!--<p>Plano básico com retroatividade para maior segurança jurídica.</p>-->
+            <div class="price"><span class="price-period" style="display: block;">A partir de:</span>R$ 506</div>
+          </div>
+          <div style="font-weight:600;color:#fff;margin-bottom:0.5rem;">Opções de Capital Segurado</div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check check"></i> R$ 500.000,00 - R$ 506,00/mês</li>
+            <li><i class="fas fa-check check"></i> R$ 800.000,00 - R$ 657,80/mês</li>
+            <li><i class="fas fa-check check"></i> R$ 1.000.000,00 - R$ 759,00/mês</li>
+          </ul>
+          <a href="contratar.html?grupo=Grupo%201%20Retroativo" class="btn btn-primary" style="width: 100%; justify-content: center;">Quero este grupo</a>
+        </div>
+        <!-- Grupo 2 -->
+        <div class="pricing-card">
+          <div class="group-info" style="text-align:center;margin-bottom:1rem;">
+            <div class="group-title" style="font-weight:bold;font-size:1.1rem;">ANADEM – GRUPO 02</div>
+            <div class="group-price" style="color:#444;font-weight:600;font-size:1rem;"><span style="font-weight:700;color:#6b7280;font-size:0.98rem;"></span> </div>
+          </div>
+          <div class="pricing-header">
+            <h3 style="display: none;">Grupo 2</h3>
+            <!--<p>Mais benefícios e cobertura ampliada para profissionais em crescimento.</p>-->
+            <div class="price"><span class="price-period" style="display: block;">A partir de:</span>R$ 531</div>
+          </div>
+          <div style="font-weight:600;color:#fff;margin-bottom:0.5rem;">Opções de Capital Segurado</div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check check"></i> R$ 500.000,00 - R$ 531,25/mês</li>
+            <li><i class="fas fa-check check"></i> R$ 800.000,00 - R$ 690,63/mês</li>
+            <li><i class="fas fa-check check"></i> R$ 1.000.000,00 - R$ 796,88/mês</li>
+          </ul>
+          <a href="contratar.html?grupo=Grupo%202" class="btn btn-primary" style="width: 100%; justify-content: center;">Quero este grupo</a>
+        </div>
+        <!-- Grupo 2 Retroatividade -->
+        <div class="pricing-card">
+          <div class="group-info" style="text-align:center;margin-bottom:1rem;">
+            <div class="group-title" style="font-weight:bold;font-size:1.1rem;">ANADEM – GRUPO 02 (COM RETROATIVIDADE DE 5 ANOS)</div>
+            <div class="group-price" style="color:#444;font-weight:600;font-size:1rem;"><span style="font-weight:700;color:#6b7280;font-size:0.98rem;"></span> </div>
+          </div>
+          <div class="pricing-header">
+            <h3 style="display: none;">Grupo 2 Retroativo</h3>
+            <!--<p>Mais benefícios e cobertura ampliada com retroatividade.</p>-->
+            <div class="price"><span class="price-period" style="display: block;">A partir de:</span>R$ 584</div>
+          </div>
+          <div style="font-weight:600;color:#fff;margin-bottom:0.5rem;">Opções de Capital Segurado</div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check check"></i> R$ 500.000,00 - R$ 584,38/mês</li>
+            <li><i class="fas fa-check check"></i> R$ 800.000,00 - R$ 759,69/mês</li>
+            <li><i class="fas fa-check check"></i> R$ 1.000.000,00 - R$ 876,56/mês</li>
+          </ul>
+          <a href="contratar.html?grupo=Grupo%202%20Retroativo" class="btn btn-primary" style="width: 100%; justify-content: center;">Quero este grupo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nova Seção: Planos de Odontologia -->
+  <section class="pricing" id="odontologia">
+    <div class="container">
+      <div class="section-header">
+        <h2>Planos de Odontologia - Grupos</h2>
+        <p>Proteção completa para profissionais de odontologia</p>
+      </div>
+      <button class="btn-ver-planos" id="verPlanosOdontologiaBtn">
+        <i class="fas fa-th-large"></i>
+        <span><a href="./odontologia.html">VER TODOS OS PLANOS</span></a>
+      </button>
+      <div class="pricing-grid">
+        <!-- Grupo D1 -->
+        <div class="pricing-card">
+          <div class="group-info" style="text-align:center;margin-bottom:1rem;">
+            <div class="group-title" style="font-weight:bold;font-size:1.1rem;">ODONTOLOGIA – GRUPO D1</div>
+            <!--<div class="group-price" style="color:#444;font-weight:600;font-size:1rem;"><span style="font-weight:700;color:#6b7280;font-size:0.98rem;">a partir de:</span> R$245,00</div>-->
+          </div>
+          <div class="pricing-header">
+            <!--<h3>Grupo D1</h3>-->
+            <!--<p>Plano essencial para dentistas que buscam proteção básica.</p>-->
+            <div class="price"><span class="price-period" style="display: block;">A partir de:</span>R$ 245</div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check check"></i> Cobertura nacional</li>
+            <li><i class="fas fa-check check"></i> Consultas e procedimentos básicos</li>
+            <li><i class="fas fa-check check"></i> Suporte jurídico inicial</li>
+          </ul>
+          <a href="contratar.html?grupo=Grupo%20D1" class="btn btn-primary" style="width: 100%; justify-content: center;">Quero este grupo</a>
+        </div>
+        <!-- Grupo D1 Retroatividade -->
+        <div class="pricing-card">
+          <div class="group-info" style="text-align:center;margin-bottom:1rem;">
+            <div class="group-title" style="font-weight:bold;font-size:1.1rem;">ODONTOLOGIA – GRUPO D1 (COM RETROATIVIDADE DE 5 ANOS)</div>
+            <!--<div class="group-price" style="color:#444;font-weight:600;font-size:1rem;"><span style="font-weight:700;color:#6b7280;font-size:0.98rem;">a partir de:</span> R$269,50</div>-->
+          </div>
+          <div class="pricing-header">
+            <!--<h3>Grupo D1 Retroativo</h3>-->
+            <!--<p>Plano essencial com retroatividade para dentistas.</p>-->
+            <div class="price"><span class="price-period" style="display: block;">A partir de:</span>R$ 269</div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check check"></i> Cobertura nacional</li>
+            <li><i class="fas fa-check check"></i> Consultas e procedimentos básicos</li>
+            <li><i class="fas fa-check check"></i> Suporte jurídico inicial</li>
+          </ul>
+          <a href="contratar.html?grupo=Grupo%20D1%20Retroativo" class="btn btn-primary" style="width: 100%; justify-content: center;">Quero este grupo</a>
+        </div>
+        <!-- Grupo D2 -->
+        <div class="pricing-card">
+          <div class="group-info" style="text-align:center;margin-bottom:1rem;">
+            <div class="group-title" style="font-weight:bold;font-size:1.1rem;">ODONTOLOGIA – GRUPO D2</div>
+            <!--<div class="group-price" style="color:#444;font-weight:600;font-size:1rem;"><span style="font-weight:700;color:#6b7280;font-size:0.98rem;">a partir de:</span> R$515,00</div>-->
+          </div>
+          <div class="pricing-header">
+            <!--<h3>Grupo D2</h3>-->
+            <!--<p>Mais benefícios e cobertura ampliada para odontologistas.</p>-->
+            <div class="price"><span class="price-period" style="display: block;">A partir de:</span>R$ 515</div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check check"></i> Cobertura nacional ampliada</li>
+            <li><i class="fas fa-check check"></i> Consultas e procedimentos ilimitados</li>
+            <li><i class="fas fa-check check"></i> Suporte jurídico completo</li>
+          </ul>
+          <a href="contratar.html?grupo=Grupo%20D2" class="btn btn-primary" style="width: 100%; justify-content: center;">Quero este grupo</a>
+        </div>
+        <!-- Grupo D2 Retroatividade -->
+        <div class="pricing-card">
+          <div class="group-info" style="text-align:center;margin-bottom:1rem;">
+            <div class="group-title" style="font-weight:bold;font-size:1.1rem;">ODONTOLOGIA – GRUPO D2 (COM RETROATIVIDADE DE 5 ANOS)</div>
+            <!--<div class="group-price" style="color:#444;font-weight:600;font-size:1rem;"><span style="font-weight:700;color:#6b7280;font-size:0.98rem;">a partir de:</span> R$566,50</div>-->
+          </div>
+          <div class="pricing-header">
+            <!--<h3>Grupo D2 Retroativo</h3>-->
+            <!--<p>Mais benefícios e cobertura ampliada com retroatividade.</p>-->
+            <div class="price"><span class="price-period" style="display: block;">A partir de:</span>R$ 566</div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check check"></i> Cobertura nacional ampliada</li>
+            <li><i class="fas fa-check check"></i> Consultas e procedimentos ilimitados</li>
+            <li><i class="fas fa-check check"></i> Suporte jurídico completo</li>
+          </ul>
+          <a href="contratar.html?grupo=Grupo%20D2%20Retroativo" class="btn btn-primary" style="width: 100%; justify-content: center;">Quero este grupo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal de Cadastro para Plano de Saúde -->
+  <div id="planModal" class="plan-modal-overlay" style="display:none;">
+    <div class="plan-modal">
+      <button class="plan-modal-close" id="closePlanModal"><i class="fas fa-times"></i></button>
+      <h2>Contratar Plano de Saúde</h2>
+      <form id="planForm">
+        <div class="form-group">
+          <label for="planName">Plano Selecionado</label>
+          <input type="text" id="planName" name="planName" readonly required>
+        </div>
+        <div class="form-group">
+          <label for="userName">Nome</label>
+          <input type="text" id="userName" name="userName" placeholder="Seu nome completo" required>
+        </div>
+        <div class="form-group">
+          <label for="userEmail">E-mail</label>
+          <input type="email" id="userEmail" name="userEmail" placeholder="Seu e-mail" required>
+        </div>
+        <div class="form-group">
+          <label for="userCPF">CPF</label>
+          <input type="text" id="userCPF" name="userCPF" placeholder="Seu CPF" maxlength="14" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:1rem;">Enviar para WhatsApp</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- News Section -->
+  <!--<section class="news">
+    <div class="container">
+      <div class="section-header">
+        <h2>Últimas Notícias</h2>
+      </div>
+      <div class="news-grid">
+        <div class="news-card">
+          <img src="/placeholder.svg?height=200&width=400" alt="Notícia 1">
+          <div class="news-content">
+            <h3>Nova tecnologia revoluciona o mercado empresarial</h3>
+            <p>Descubra como as últimas inovações estão transformando a forma como as empresas operam.</p>
+            <div class="news-date">15 de janeiro de 2024</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <img src="/placeholder.svg?height=200&width=400" alt="Notícia 2">
+          <div class="news-content">
+            <h3>Empresa conquista certificação internacional</h3>
+            <p>Reconhecimento internacional confirma nosso compromisso com a qualidade.</p>
+            <div class="news-date">12 de janeiro de 2024</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <img src="/placeholder.svg?height=200&width=400" alt="Notícia 3">
+          <div class="news-content">
+            <h3>Crescimento de 200% no último trimestre</h3>
+            <p>Resultados excepcionais demonstram a força da nossa estratégia de mercado.</p>
+            <div class="news-date">10 de janeiro de 2024</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="#" class="btn btn-outline">Ver Todas as Notícias</a>
+      </div>
+    </div>
+  </section>
+-->
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-content">
+        <div>
+          <div class="contact-form">
+            <h2>Entre em Contato</h2>
+            <form id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <input type="text" placeholder="Nome" required>
+                </div>
+                <div class="form-group">
+                  <input type="email" placeholder="E-mail" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <textarea placeholder="Mensagem" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            </form>
+          </div>
+        </div>
+        <div>
+          <div class="contact-info">
+            <h3>Informações de Contato</h3>
+            <div class="contact-item">
+              <!--<i class="fas fa-map-marker-alt"></i>
+            <span>Av. Paulista, 1000 - Manaus, AM</span>-->
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>(92) 98291-0122</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>aiag.gurgel@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <a href="#" class="logo"><img src="./img/logo-anadem.png" alt="Logo Anadem"> <img src="./img/logo_seguremed.png" alt="Logo Seguremed"></a>
+          <p>Faça parte da maior rede de blindagem médica do Brasil.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Serviços</h4>
+          <ul>
+            <li><a href="#">Consultoria</a></li>
+            <li><a href="#">Desenvolvimento</a></li>
+
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="#about">Sobre Nós</a></li>
+            <li><a href="https://anadem.org.br/nossos-parceiros/">Parceiros</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contato</h4>
+          <p>(92) 98291-0122</p>
+          <p>aiag.gurgel@gmail.com</p>
+          <!--<p>Av. Amazonas, 1000<br>Manaus, AM</p>-->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 - Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/5592982910122" target="_blank" class="whatsapp-btn">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
