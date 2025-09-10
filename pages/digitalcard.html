@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Link do Font Awesome no <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <title>Cirurgia Segura - Cartão Digital</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #0066a2;
+      margin: 0;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    .container {
+      width: 100%;
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .screen {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      scroll-snap-align: start;
+      padding: 20px;
+    }
+
+    /* Tela principal */
+    .main-screen {
+      background: linear-gradient(160deg, #0066a2, #007bbd);
+      color: #fff;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .profile img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 20px 0;
+      border: 4px solid #fff;
+    }
+
+    .name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .role {
+      font-size: 14px;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  background: #e6f0fa;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #0066a2;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.icon-btn:hover {
+  background: #d4e7f9;
+  transform: scale(1.1);
+}
+
+    .buttons button {
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 10px;
+      font-size: 24px;
+      cursor: pointer;
+      background: #e6f0fa;
+    }
+
+    .main-btn {
+      padding: 12px 20px;
+      border: none;
+      background: #cce5f9;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #003f5c;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .footer span {
+      color: #fff;
+    }
+
+    /* Tela QR Code */
+    .qr-screen {
+      background: #fff;
+      color: #0066a2;
+    }
+
+    .qr-screen img {
+      width: 200px;
+      height: 200px;
+      margin: 20px 0;
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 10px;
+      font-size: 12px;
+      opacity: 0.7;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Tela principal -->
+    <section class="screen main-screen" id="screen main-screen">
+
+      <img src="../img/Glaucia-Cirurgia-Segura-Logo-branco-Cartao-Digital.webp" alt="Logo Cirurgia Segura" style="margin-bottom: 5rem;">
+
+      <div class="profile">
+
+        <img src="../img/perfil nelson gurgel.png" alt="Foto de Perfil">
+      </div>
+      <div class="name">NELSON GURGEL</div>
+      <div class="role">Representante Comercial</div>
+
+<div class="buttons">
+  <!-- WhatsApp -->
+  <a href="https://wa.me/5592982910122" target="_blank" class="icon-btn">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://www.instagram.com/nelson_gurgel" target="_blank" class="icon-btn">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <!-- Telefone -->
+  <a href="tel:+5592982910122" class="icon-btn">
+    <i class="fas fa-phone"></i>
+  </a>
+</div>
+
+
+      <button class="main-btn" style="margin-top: 5rem;" > <a href="https://allekx.github.io/cirurgiasegura/#about" style="text-decoration: none; color: #0066a2;">CONHEÇA CIRURGIA SEGURA</a></button>
+
+     
+
+      <div class="footer">
+        <span> <a href="#screen qr-screen" style="text-decoration: none; color: #fff;">⬇ QR-CODE</a></span>
+       <!--<span>💾 SALVAR CONTATO</span>--> 
+      </div>
+    </section>
+
+    <!-- Tela QR Code -->
+    <section class="screen qr-screen" id="screen qr-screen">
+
+      <img src="../img/Nelson cirurgia segura logo.webp" alt="Logo Cirurgia Segura" style="width: 50%; height: auto; margin-bottom: 3rem;">
+
+      <div id="qrcode"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+  new QRCode(document.getElementById("qrcode"), "https://nelsongurgel.com/#about2");
+  </script>
+
+      <a href="#screen main-screen" style="text-decoration: none; color: #007bbd;">⬆ Voltar ao card</a>
+    </section>
+
+  </div>
+</body>
+</html>
