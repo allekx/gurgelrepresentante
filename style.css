@@ -151,9 +151,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.055); /* Escurece o fundo */
+  background-color: rgba(0, 0, 0, 0.4); /* Escurece o fundo para melhor legibilidade */
   z-index: 1;
 }
+
+    @media (max-width: 768px) {
+      .hero .overlay {
+        background-color: rgba(0, 0, 0, 0.5); /* Mais escuro no mobile */
+      }
+    }
 
     .hero-content {
       display: grid;
@@ -173,6 +179,16 @@
       font-size: 1.2rem;
       margin-bottom: 2rem;
       color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Card padrão (opcional) para hero-text */
+    .hero-text.card {
+      background: rgba(255, 255, 255, 0.9);
+      color: #1f2937;
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem 1.4rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      display: inline-block;
     }
 
     .hero-buttons {
@@ -990,13 +1006,58 @@
         display: none;
       }
 
+      .hero {
+        padding: 4rem 0 2rem;
+        background-position: center;
+        background-size: cover;
+      }
+
       .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
       }
 
       .hero-text h1 {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+        color: #134e4a; /* teal escuro para melhor contraste */
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.5;
+        color: #1f2937; /* cinza-azulado escuro para legibilidade */
+      }
+
+      /* Card em efeito vidro (glassmorphism) */
+      .hero-text {
+        background: rgba(255, 255, 255, 0.22);
+        backdrop-filter: blur(12px) saturate(140%);
+        -webkit-backdrop-filter: blur(12px) saturate(140%);
+        padding: 1rem 1rem 1.2rem;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        display: inline-block;
+        margin: 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+
+      .hero-buttons {
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
       }
 
       .about-content {
@@ -1011,10 +1072,6 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-buttons {
-        justify-content: center;
-      }
-
       .pricing-card.popular {
         transform: none;
       }
@@ -1027,11 +1084,36 @@
 
       .hero {
         background-image: url('./img/banner1-mobile.png');
-        padding: 6rem 0 3rem;
+        padding: 3rem 0 2rem;
+        background-position: center;
+        background-size: cover;
       }
 
       .hero-text h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        line-height: 1.2;
+        margin-bottom: 0.8rem;
+        color: #134e4a; /* mantém contraste no mobile pequeno */
+      }
+
+      .hero-text p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+        color: #1f2937;
+      }
+
+      .hero-text {
+        background: rgba(255, 255, 255, 0.26);
+        padding: 0.9rem 0.9rem 1.1rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+
+      .hero-buttons .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+        max-width: 260px;
       }
 
       .section-header h2 {
