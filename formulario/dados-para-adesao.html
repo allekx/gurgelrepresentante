@@ -359,7 +359,7 @@
         <div class="form-row">
           <div class="form-group">
             <label for="dataNascimento">Data de Nascimento <span class="required">*</span></label>
-            <input type="date" id="dataNascimento" name="dataNascimento" required>
+            <input type="text" id="dataNascimento" name="dataNascimento" placeholder="DD/MM/AAAA" inputmode="numeric" maxlength="10" required>
           </div>
           <div class="form-group">
             <label for="altura">Altura (cm) <span class="required">*</span></label>
@@ -893,6 +893,37 @@
     });
 
     // Máscaras para CPF e telefone
+    // Máscara para Data de Nascimento (DD/MM/AAAA) com validação básica
+    (function(){
+      const dateInput = document.getElementById('dataNascimento');
+      if (dateInput) {
+        dateInput.addEventListener('input', function (e) {
+          let v = e.target.value.replace(/\D/g, '').slice(0, 8);
+          if (v.length >= 5) {
+            v = v.replace(/(\d{2})(\d{2})(\d{1,4}).*/, '$1/$2/$3');
+          } else if (v.length >= 3) {
+            v = v.replace(/(\d{2})(\d{1,2}).*/, '$1/$2');
+          }
+          e.target.value = v;
+        });
+
+        dateInput.addEventListener('blur', function (e) {
+          const val = e.target.value;
+          const m = val.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+          if (!m) return;
+          const dd = parseInt(m[1], 10);
+          const mm = parseInt(m[2], 10) - 1;
+          const yyyy = parseInt(m[3], 10);
+          const d = new Date(yyyy, mm, dd);
+          const valid = d && d.getFullYear() === yyyy && d.getMonth() === mm && d.getDate() === dd;
+          if (!valid) {
+            alert('Data inválida. Utilize o formato DD/MM/AAAA.');
+            e.target.focus();
+          }
+        });
+      }
+    })();
+
     document.getElementById('cpf').addEventListener('input', function (e) {
       let value = e.target.value.replace(/\D/g, '');
       value = value.replace(/(\d{3})(\d)/, '$1.$2');
