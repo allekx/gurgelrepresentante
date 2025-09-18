@@ -711,7 +711,7 @@
             </div>
             <div>
               <label for="dataNascimento">Data de Nascimento</label>
-              <input type="date" id="dataNascimento" name="dataNascimento" required>
+              <input type="text" id="dataNascimento" name="dataNascimento" placeholder="dd/mm/aaaa" inputmode="numeric" maxlength="10" required>
             </div>
             <div>
               <label for="especialidade">Especialidade</label>
@@ -721,7 +721,11 @@
             </div>
             <div>
               <label for="tipoPlano">Tipo de Plano</label>
-              <input type="text" id="tipoPlano" name="tipoPlano" readonly required>
+              <select id="tipoPlano" name="tipoPlano" required>
+                <option value="">Selecione o tipo de plano</option>
+                <option value="Plano Green">Plano Green (sem retroatividade)</option>
+                <option value="Plano Black">Plano Black (com retroatividade)</option>
+              </select>
             </div>
 
             <!-- Documentos Necessários -->
@@ -999,6 +1003,36 @@
   </div>
 
   <script>
+    // Máscara e validação para Data de Nascimento (DD/MM/AAAA)
+    (function(){
+      const dateInput = document.getElementById('dataNascimento');
+      if (dateInput) {
+        dateInput.addEventListener('input', function (e) {
+          let v = e.target.value.replace(/\D/g, '').slice(0, 8);
+          if (v.length >= 5) {
+            v = v.replace(/(\d{2})(\d{2})(\d{1,4}).*/, '$1/$2/$3');
+          } else if (v.length >= 3) {
+            v = v.replace(/(\d{2})(\d{1,2}).*/, '$1/$2');
+          }
+          e.target.value = v;
+        });
+
+        dateInput.addEventListener('blur', function (e) {
+          const val = e.target.value;
+          const m = val.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+          if (!m) return;
+          const dd = parseInt(m[1], 10);
+          const mm = parseInt(m[2], 10) - 1;
+          const yyyy = parseInt(m[3], 10);
+          const d = new Date(yyyy, mm, dd);
+          const valid = d && d.getFullYear() === yyyy && d.getMonth() === mm && d.getDate() === dd;
+          if (!valid) {
+            alert('Data inválida. Utilize o formato DD/MM/AAAA.');
+            e.target.focus();
+          }
+        });
+      }
+    })();
     // Capturar parâmetros da URL
     const urlParams = new URLSearchParams(window.location.search);
     const especialidade = urlParams.get('especialidade');
@@ -1007,7 +1041,9 @@
 
     // Preencher campos se vierem da seleção de especialidade
     if (especialidade && plano) {
-      document.getElementById('tipoPlano').value = plano === 'green' ? 'Plano Green' : 'Plano Black';
+      const tipoPlanoSelect = document.getElementById('tipoPlano');
+      const valorPlano = plano === 'green' ? 'Plano Green' : 'Plano Black';
+      tipoPlanoSelect.value = valorPlano;
 
       // Determinar grupo baseado na especialidade
       let grupoDeterminado = determinarGrupoPorEspecialidade(especialidade);
@@ -1022,6 +1058,14 @@
       const grupoLimpo = grupo.trim();
       document.getElementById('grupo').value = grupoLimpo;
       mostrarDescricaoGrupo(grupoLimpo);
+
+      // Predefinir tipo de plano conforme nome do grupo (quando vier direto de "Quero este grupo")
+      const tipoPlanoSelect = document.getElementById('tipoPlano');
+      if (/retroativo/i.test(grupoLimpo) || /retroatividade/i.test(grupoLimpo)) {
+        tipoPlanoSelect.value = 'Plano Black';
+      } else {
+        tipoPlanoSelect.value = 'Plano Green';
+      }
     }
 
     // Preencher opções de especialidades no select
