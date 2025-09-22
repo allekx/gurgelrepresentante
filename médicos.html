@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Planos Médicos</title>
+  <title>Seguro Médico</title>
+  <link rel="icon" type="image/png" href="./img/cropped-icon_branco-192x192.png">
 </head>
 
 <style>
@@ -149,7 +150,13 @@
   .plan-option.black.selected {
     border-color: #374151;
     background: #374151;
+    color: #ffffff;
   }
+
+  /* Força contraste do texto no plano Black selecionado */
+  .plan-option.black.selected h3,
+  .plan-option.black.selected p { color: #ffffff; }
+  .plan-option.black.selected p { opacity: 0.95; }
 
   .plan-option h3 {
     font-size: 1.2rem;
@@ -255,11 +262,11 @@
       <div class="plan-options">
         <div class="plan-option green" data-plan="green">
           <h3>Plano Green</h3>
-          <p>Plano básico com proteção essencial</p>
+          <p>> Sem Retroatividade</p>
         </div>
         <div class="plan-option black" data-plan="black">
           <h3>Plano Black</h3>
-          <p>Plano premium com cobertura ampliada</p>
+          <p>> Com Retroatividade de 5 Anos </p>
         </div>
       </div>
 
