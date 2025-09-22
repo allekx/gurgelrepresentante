@@ -11,6 +11,13 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
+  <!-- Redirecionamento automático para home.html -->
+  <meta http-equiv="refresh" content="0; url=home.html">
+  <script>
+    // Fallback imediato via JS
+    window.location.replace('home.html');
+  </script>
+
   <style>
     /* Estilos para diferenciar os grupos com cores */
     .pricing-card:nth-child(1) {
@@ -162,6 +169,9 @@
 </head>
 
 <body>
+  <noscript>
+    Se não for redirecionado automaticamente, <a href="home.html">clique aqui para acessar a página inicial</a>.
+  </noscript>
   <!-- Header -->
   <header class="header" id="header">
     <div class="container">
