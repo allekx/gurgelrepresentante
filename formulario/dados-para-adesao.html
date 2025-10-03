@@ -720,6 +720,7 @@
         <button type="button" class="btn btn-primary" id="btnSeguinte">Seguinte</button>
         <button type="submit" class="btn btn-primary" id="btnEnviar" style="display: none;">Enviar Adesão</button>
       </div>
+      
     </form>
   </div>
 
@@ -742,6 +743,38 @@
     const btnSeguinte = document.getElementById('btnSeguinte');
     const btnVoltar = document.getElementById('btnVoltar');
     const btnEnviar = document.getElementById('btnEnviar');
+
+    // URL do webhook (Google Apps Script) para salvar na planilha
+    // Substitua pelo seu endpoint publicado do Apps Script (implantação como Web App)
+    const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzgG-CR_m42mo0UB0sNIBUPaHySsptW7Hu9Im6SS-C4wAhU2N50zXiQxGk1wOuQi6CT/exec';
+
+    function enviarParaPlanilha(payload) {
+      try {
+        console.log('Enviando para planilha:', payload);
+        // Evita erro quando a URL ainda não foi configurada
+        if (!SHEETS_WEBHOOK_URL) {
+          console.log('URL do webhook não configurada');
+          return;
+        }
+        console.log('URL do webhook:', SHEETS_WEBHOOK_URL);
+        fetch(SHEETS_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          // ajuda a completar o envio mesmo que o usuário navegue rápido
+          keepalive: true
+        })
+        .then(() => {
+          console.log('Dados enviados para planilha com sucesso');
+        })
+        .catch(err => { 
+          console.error('Erro no envio para planilha:', err);
+        });
+      } catch (err) {
+        console.error('Erro na função enviarParaPlanilha:', err);
+      }
+    }
 
     function showStep(step) {
       // Esconder todas as etapas
@@ -884,6 +917,40 @@
       message += `✅ Autorização: Confirmada\n\n`;
       message += `📞 *Para mais informações, entre em contato conosco!*`;
 
+      // Enviar TODOS os dados para a planilha em colunas (procedimentos como texto)
+      const planilhaPayload = {
+        timestamp: new Date().toISOString(),
+        origem: 'dados-para-adesao',
+        nomeCompleto: data.nomeCompleto || '',
+        pacienteEstrangeiro: data.pacienteEstrangeiro || '',
+        cpf: data.cpf || '',
+        rg: data.rg || '',
+        email: data.email || '',
+        telefone: data.telefone || '',
+        endereco: data.endereco || '',
+        numero: data.numero || '',
+        bairro: data.bairro || '',
+        complemento: data.complemento || '',
+        cep: data.cep || '',
+        cidade: data.cidade || '',
+        estado: data.estado || '',
+        dataNascimento: data.dataNascimento || '',
+        altura: data.altura || '',
+        peso: data.peso || '',
+        fumante: data.fumante || '',
+        anticoncepcional: data.anticoncepcional || '',
+        doencasCronicas: data.doencasCronicas || '',
+        medicacao: data.medicacao || '',
+        medico: data.medico || '',
+        hospital: data.hospital || '',
+        dataCirurgia: data.dataCirurgia || '',
+        formaPagamento: data.formaPagamento || '',
+        procedimentos: (data.procedimentos || []).join(' | '),
+        mensagemWhatsApp: message
+      };
+      console.log('Enviando dados reais para planilha:', planilhaPayload);
+      enviarParaPlanilha(planilhaPayload);
+
       // Abrir WhatsApp com a mensagem
       const whatsappUrl = `https://wa.me/5592982910122?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
@@ -945,6 +1012,8 @@
       value = value.replace(/(\d{5})(\d)/, '$1-$2');
       e.target.value = value;
     });
+
+    
   </script>
 </body>
 
