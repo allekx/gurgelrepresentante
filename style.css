@@ -19,9 +19,9 @@
 
     /* Header Styles */
     .header {
-      background: white;
+      background: transparent;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      position: fixed;
+      position:  absolute;
       width: 100%;
       top: 0;
       z-index: 1000;
@@ -58,13 +58,13 @@
 
     .nav-menu a {
       text-decoration: none;
-      color: #666;
+      color: #ffffff;
       font-weight: 500;
       transition: color 0.3s ease;
     }
 
     .nav-menu a:hover {
-      color: #0d9488;
+      color: #0bf8e4;
     }
 
     .nav-contact {
@@ -77,7 +77,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      color: #666;
+      color: #ffffff;
       font-size: 0.9rem;
     }
 
@@ -143,17 +143,21 @@
       background-size: cover;
       color: white;
       padding: 8rem 0 4rem;
-      margin-top: 80px;
+      margin-top: 0px;
     }
-    .hero::before {
+.hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.185); /* ajuste a opacidade */
+  background: linear-gradient(
+    to right,
+    rgba(14, 66, 46, 0.75), /* verde forte à esquerda */
+     rgba(0, 99, 58, 0.171)   /* verde suave à direita */
+  );
   z-index: 1;
 }
 
-/* garante que o conteúdo fique acima do overlay */
+/* conteúdo acima do overlay */
 .hero > * {
   position: relative;
   z-index: 2;
@@ -1093,6 +1097,9 @@
     @media (max-width: 480px) {
       .container {
         padding: 0 15px;
+      }
+      .hero-content{
+        margin-top: 100px;
       }
 
       .hero {
