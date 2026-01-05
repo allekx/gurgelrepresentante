@@ -117,13 +117,13 @@
 
     .btn-outline {
       background: transparent;
-      color: #0d9488;
-      border: 2px solid #0d9488;
+      color:  rgb(248, 255, 153);
+      border: 2px solid  rgb(248, 255, 153);
     }
 
     .btn-outline:hover {
-      background: #0d9488;
-      color: white;
+      background: #eeff55;
+      color: rgb(20, 95, 95);
     }
 
     /* Mobile Menu */
@@ -145,6 +145,19 @@
       padding: 8rem 0 4rem;
       margin-top: 80px;
     }
+    .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.185); /* ajuste a opacidade */
+  z-index: 1;
+}
+
+/* garante que o conteúdo fique acima do overlay */
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
     .hero .overlay {
   position: absolute;
   top: 0;
